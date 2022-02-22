@@ -1,12 +1,5 @@
 import { Reader, Writer } from "protobufjs/minimal";
 export declare const protobufPackage = "alice.checkers.checkers";
-export interface MsgCreatePost {
-    creator: string;
-    title: string;
-    body: string;
-}
-export interface MsgCreatePostResponse {
-}
 export interface MsgCreateGame {
     creator: string;
     red: string;
@@ -15,20 +8,6 @@ export interface MsgCreateGame {
 export interface MsgCreateGameResponse {
     idValue: string;
 }
-export declare const MsgCreatePost: {
-    encode(message: MsgCreatePost, writer?: Writer): Writer;
-    decode(input: Reader | Uint8Array, length?: number): MsgCreatePost;
-    fromJSON(object: any): MsgCreatePost;
-    toJSON(message: MsgCreatePost): unknown;
-    fromPartial(object: DeepPartial<MsgCreatePost>): MsgCreatePost;
-};
-export declare const MsgCreatePostResponse: {
-    encode(_: MsgCreatePostResponse, writer?: Writer): Writer;
-    decode(input: Reader | Uint8Array, length?: number): MsgCreatePostResponse;
-    fromJSON(_: any): MsgCreatePostResponse;
-    toJSON(_: MsgCreatePostResponse): unknown;
-    fromPartial(_: DeepPartial<MsgCreatePostResponse>): MsgCreatePostResponse;
-};
 export declare const MsgCreateGame: {
     encode(message: MsgCreateGame, writer?: Writer): Writer;
     decode(input: Reader | Uint8Array, length?: number): MsgCreateGame;
@@ -45,14 +24,12 @@ export declare const MsgCreateGameResponse: {
 };
 /** Msg defines the Msg service. */
 export interface Msg {
-    CreatePost(request: MsgCreatePost): Promise<MsgCreatePostResponse>;
     /** this line is used by starport scaffolding # proto/tx/rpc */
     CreateGame(request: MsgCreateGame): Promise<MsgCreateGameResponse>;
 }
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
     constructor(rpc: Rpc);
-    CreatePost(request: MsgCreatePost): Promise<MsgCreatePostResponse>;
     CreateGame(request: MsgCreateGame): Promise<MsgCreateGameResponse>;
 }
 interface Rpc {

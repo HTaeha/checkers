@@ -12835,8 +12835,6 @@ definitions:
     properties:
       idValue:
         type: string
-  alice.checkers.checkers.MsgCreatePostResponse:
-    type: object
   alice.checkers.checkers.NextGame:
     type: object
     properties:

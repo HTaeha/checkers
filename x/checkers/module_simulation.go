@@ -65,17 +65,6 @@ func (am AppModule) RegisterStoreDecoder(_ sdk.StoreDecoderRegistry) {}
 func (am AppModule) WeightedOperations(simState module.SimulationState) []simtypes.WeightedOperation {
 	operations := make([]simtypes.WeightedOperation, 0)
 
-	var weightMsgCreatePost int
-	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgCreatePost, &weightMsgCreatePost, nil,
-		func(_ *rand.Rand) {
-			weightMsgCreatePost = defaultWeightMsgCreatePost
-		},
-	)
-	operations = append(operations, simulation.NewWeightedOperation(
-		weightMsgCreatePost,
-		checkerssimulation.SimulateMsgCreatePost(am.accountKeeper, am.bankKeeper, am.keeper),
-	))
-
 	var weightMsgCreateGame int
 	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgCreateGame, &weightMsgCreateGame, nil,
 		func(_ *rand.Rand) {
