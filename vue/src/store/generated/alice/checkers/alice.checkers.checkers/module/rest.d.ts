@@ -2,6 +2,7 @@ export declare type CheckersMsgCreatePostResponse = object;
 export interface CheckersNextGame {
     /** @format uint64 */
     idValue?: string;
+    creator?: string;
 }
 /**
  * Params defines the parameters for the module.
@@ -35,6 +36,7 @@ export interface CheckersQueryParamsResponse {
 }
 export interface CheckersStoredGame {
     index?: string;
+    creator?: string;
     game?: string;
     turn?: string;
     red?: string;

@@ -2,6 +2,7 @@ import { Writer, Reader } from "protobufjs/minimal";
 export declare const protobufPackage = "alice.checkers.checkers";
 export interface NextGame {
     idValue: number;
+    creator: string;
 }
 export declare const NextGame: {
     encode(message: NextGame, writer?: Writer): Writer;

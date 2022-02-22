@@ -3,6 +3,7 @@ import { Writer, Reader } from "protobufjs/minimal";
 export const protobufPackage = "alice.checkers.checkers";
 const baseStoredGame = {
     index: "",
+    creator: "",
     game: "",
     turn: "",
     red: "",
@@ -13,17 +14,20 @@ export const StoredGame = {
         if (message.index !== "") {
             writer.uint32(10).string(message.index);
         }
+        if (message.creator !== "") {
+            writer.uint32(18).string(message.creator);
+        }
         if (message.game !== "") {
-            writer.uint32(18).string(message.game);
+            writer.uint32(26).string(message.game);
         }
         if (message.turn !== "") {
-            writer.uint32(26).string(message.turn);
+            writer.uint32(34).string(message.turn);
         }
         if (message.red !== "") {
-            writer.uint32(34).string(message.red);
+            writer.uint32(42).string(message.red);
         }
         if (message.black !== "") {
-            writer.uint32(42).string(message.black);
+            writer.uint32(50).string(message.black);
         }
         return writer;
     },
@@ -38,15 +42,18 @@ export const StoredGame = {
                     message.index = reader.string();
                     break;
                 case 2:
-                    message.game = reader.string();
+                    message.creator = reader.string();
                     break;
                 case 3:
-                    message.turn = reader.string();
+                    message.game = reader.string();
                     break;
                 case 4:
-                    message.red = reader.string();
+                    message.turn = reader.string();
                     break;
                 case 5:
+                    message.red = reader.string();
+                    break;
+                case 6:
                     message.black = reader.string();
                     break;
                 default:
@@ -63,6 +70,12 @@ export const StoredGame = {
         }
         else {
             message.index = "";
+        }
+        if (object.creator !== undefined && object.creator !== null) {
+            message.creator = String(object.creator);
+        }
+        else {
+            message.creator = "";
         }
         if (object.game !== undefined && object.game !== null) {
             message.game = String(object.game);
@@ -93,6 +106,7 @@ export const StoredGame = {
     toJSON(message) {
         const obj = {};
         message.index !== undefined && (obj.index = message.index);
+        message.creator !== undefined && (obj.creator = message.creator);
         message.game !== undefined && (obj.game = message.game);
         message.turn !== undefined && (obj.turn = message.turn);
         message.red !== undefined && (obj.red = message.red);
@@ -106,6 +120,12 @@ export const StoredGame = {
         }
         else {
             message.index = "";
+        }
+        if (object.creator !== undefined && object.creator !== null) {
+            message.creator = object.creator;
+        }
+        else {
+            message.creator = "";
         }
         if (object.game !== undefined && object.game !== null) {
             message.game = object.game;
