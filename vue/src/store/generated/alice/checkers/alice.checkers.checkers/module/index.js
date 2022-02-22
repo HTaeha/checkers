@@ -3,8 +3,10 @@ import { SigningStargateClient } from "@cosmjs/stargate";
 import { Registry } from "@cosmjs/proto-signing";
 import { Api } from "./rest";
 import { MsgCreatePost } from "./types/checkers/tx";
+import { MsgCreateGame } from "./types/checkers/tx";
 const types = [
     ["/alice.checkers.checkers.MsgCreatePost", MsgCreatePost],
+    ["/alice.checkers.checkers.MsgCreateGame", MsgCreateGame],
 ];
 export const MissingWalletError = new Error("wallet is required");
 export const registry = new Registry(types);
@@ -26,6 +28,7 @@ const txClient = async (wallet, { addr: addr } = { addr: "http://localhost:26657
     return {
         signAndBroadcast: (msgs, { fee, memo } = { fee: defaultFee, memo: "" }) => client.signAndBroadcast(address, msgs, fee, memo),
         msgCreatePost: (data) => ({ typeUrl: "/alice.checkers.checkers.MsgCreatePost", value: MsgCreatePost.fromPartial(data) }),
+        msgCreateGame: (data) => ({ typeUrl: "/alice.checkers.checkers.MsgCreateGame", value: MsgCreateGame.fromPartial(data) }),
     };
 };
 const queryClient = async ({ addr: addr } = { addr: "http://localhost:1317" }) => {
